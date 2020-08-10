@@ -1,32 +1,46 @@
 <!doctype html>
-<html ng-app='NarrowItDownApp' lang="en">
+<html lang="en" ng-app='NarrowItDownApp'>
   <head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="angular.min.js"></script>
-    <script src="app.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="angular.min.js"></script>
+    <script src='app.js'></script>
+
   </head>
 <body>
-   <div ng-controller="NarrowItDownController as narrowCtrl" class="container">
+   <div class="container" ng-controller="NarrowItDownController as ctrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
     <div class="form-group">
-      <input ng-model="narrowCtrl.searchTerm" type="text" placeholder="search term" class="form-control">
+      <input type="text" placeholder="search term" class="form-control" ng-model="filterText">
     </div>
     <div class="form-group narrow-button">
-      <button ng-click="narrowCtrl.searchMenuItems()" class="btn btn-primary">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="ctrl.narrowIt();">Narrow It Down For Me!</button>
     </div>
+    <!-- Bonus loader (see Bonus section of the assignment) -->
+    <!-- <items-loader-indicator></items-loader-indicator> -->
 
-    <p><br/><hr/></p>
-
-    <found-items
-      items="narrowCtrl.found"
-      on-remove="narrowCtrl.removeItem(index)">
-    </found-items>
-
+    <!-- found-items should be implemented as a component -->
+    <div style="margin: 50px 0px 0px 0px;position:absolute">
+      <found-list
+        found-items="ctrl.found"
+        on-remove="ctrl.removeItem(index)"
+      >
+      </found-list>
+    </div>
+    <!-- <div class="form-group">
+      <ul>
+        <li ng-repeat="category in ctrl.found">
+          {{ category.short_name }}
+          {{ category.name }}
+        </li>
+      </ul>
+    </div> -->
   </div>
 
+  <!-- <script src="angular.min.js"></script>
+  <script src="app.js"></script> -->
 </body>
 </html>

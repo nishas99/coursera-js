@@ -1,9 +1,12 @@
-<div>
-<ul>
-  <li ng-repeat="item in foundCtrl.items">
-    {{ item.name }}, {{ item.short_name }}, {{item.description}}
-    <button ng-click="foundCtrl.onRemove({index: $index});">Don't want this one!</button>
+<ol>
+  <li ng-repeat="item in list.foundItems">
+    <div>
+      ({{ item.short_name }})  {{ item.name }}
+    </div>
+    <div>
+      {{ item.description }}
+    </div>
+    <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
   </li>
-</ul>
-<div>
-<div ng-if="foundCtrl.isNothingFound()">Nothing found.</div>
+</ol>
+<!-- <div class="error" ng-if="list.cookiesInList()">WARNING! WARNING! COOKIES DETECTED!</div> -->
